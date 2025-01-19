@@ -10,8 +10,8 @@
   }
 
   body {
-    line-height: 1.4;
-    min-height: 90vh;
+    line-height: 1.2;
+    min-height: 100vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -55,12 +55,12 @@
   }
 
   button {
-    padding: 0.5rem 1rem;
-    border-radius: 0.4rem;
+    padding: 0.25rem 0.5rem;
+    border-radius: 0.25rem;
     border-color: whitesmoke;
     background: #535557;
     color: whitesmoke;
-    border-radius: 5px;
+    border-radius: 2px;
     cursor: pointer;
     font-size: clamp(1rem, 1.2vw, 2rem);
     font-variant-caps: all-petite-caps;
@@ -72,6 +72,4 @@
     padding: 0.5rem 1rem;
     border-radius: 0.4rem;
     cursor: pointer;
-    /* background: #23303d; */
-    /* background: #30422b; */
   }
