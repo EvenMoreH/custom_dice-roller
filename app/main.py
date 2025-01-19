@@ -5,10 +5,10 @@ from fasthtml.common import (
 import random
 
 # for Docker
-app, rt = fast_app(static_path="static") # type: ignore
+# app, rt = fast_app(static_path="static") # type: ignore
 
 # for local
-# app, rt = fast_app(static_path="app/static") # type: ignore
+app, rt = fast_app(static_path="app/static") # type: ignore
 
 
 @rt("/")
@@ -27,8 +27,12 @@ def homepage(session):
         ),
         Body(
             Div(
-                H1("Dice Roller", cls="title"),
+                H1("Dice Roller", cls="title", style="padding-left: 4rem;"),
+                Button(
+                    "(i)", hx_get="/to_about", hx_push_url="true", hx_trigger="click",
+                    cls="buttonAbout", style="width: 50px; font-variant: none; font-family:Georgia, 'Times New Roman', Times, serif;"),
                 cls="container",
+                style="flex-direction: row;",
             ),
             Div(
                 Div(
@@ -69,17 +73,18 @@ def homepage(session):
             ),
             Div(style="padding: 10px"),
             Div(
-                Button("d3", id="d3", hx_get="/d3", hx_target="#result", type="submit", style="background: #23303d;"),
-                Button("d4", id="d4", hx_get="/d4", hx_target="#result", type="submit", style="background: #23303d;"),
-                Button("d6", id="d6", hx_get="/d6", hx_target="#result", type="submit", style="background: #23303d;"),
-                Button("d8", id="d8", hx_get="/d8", hx_target="#result", type="submit", style="background: #23303d;"),
+                Button("d3", id="d3", hx_get="/d3", hx_target="#result", type="submit", cls="buttonD"),
+                Button("d4", id="d4", hx_get="/d4", hx_target="#result", type="submit", cls="buttonD"),
+                Button("d6", id="d6", hx_get="/d6", hx_target="#result", type="submit", cls="buttonD"),
+                Button("d8", id="d8", hx_get="/d8", hx_target="#result", type="submit", cls="buttonD"),
                 cls="grid-1x4"
             ),
             Div(
-                Button("d10", id="d10", hx_get="/d10", hx_target="#result", type="submit", style="background: #23303d;"),
-                Button("d12", id="d12", hx_get="/d12", hx_target="#result", type="submit", style="background: #23303d;"),
-                Button("d20", id="d20", hx_get="/d20", hx_target="#result", type="submit", style="background: #23303d;"),
-                Button("d100", id="d100", hx_get="/d100", hx_target="#result", type="submit", style="background: #23303d;"),
+                Button("d10", id="d10", hx_get="/d10", hx_target="#result", type="submit", cls="buttonD"),
+                Button("d12", id="d12", hx_get="/d12", hx_target="#result", type="submit", cls="buttonD"),
+                Button("d100", id="d100", hx_get="/d100", hx_target="#result", type="submit", cls="buttonD"),
+                Button("d20", id="d20", hx_get="/d20", hx_target="#result", type="submit", cls="button20",
+                       title="Critical Fail(1) always shows (1); Critical Success(20) is converted to (99)"),
                 cls="grid-1x4"
             ),
             # displaying results
@@ -96,35 +101,35 @@ def homepage(session):
             Div(style="padding: 10px"),
             Div(
                 Div(
-                    Button("+1", id="p-one", hx_get="/plus", hx_vals={"bonus": 1}, type="submit", hx_swap="none", style="background: #30422b;"),
-                    Button("+2", id="p-two", hx_get="/plus", hx_vals={"bonus": 2}, type="submit", hx_swap="none", style="background: #30422b;"),
-                    Button("+3", id="p-three", hx_get="/plus", hx_vals={"bonus": 3}, type="submit", hx_swap="none", style="background: #30422b;"),
-                    Button("+4", id="p-four", hx_get="/plus", hx_vals={"bonus": 4}, type="submit", hx_swap="none", style="background: #30422b;"),
-                    Button("+5", id="p-five", hx_get="/plus", hx_vals={"bonus": 5}, type="submit", hx_swap="none", style="background: #30422b;"),
+                    Button("+1", id="p-one", hx_get="/plus", hx_vals={"bonus": 1}, type="submit", hx_swap="none", cls="buttonPlus"),
+                    Button("+2", id="p-two", hx_get="/plus", hx_vals={"bonus": 2}, type="submit", hx_swap="none", cls="buttonPlus"),
+                    Button("+3", id="p-three", hx_get="/plus", hx_vals={"bonus": 3}, type="submit", hx_swap="none", cls="buttonPlus"),
+                    Button("+4", id="p-four", hx_get="/plus", hx_vals={"bonus": 4}, type="submit", hx_swap="none", cls="buttonPlus"),
+                    Button("+5", id="p-five", hx_get="/plus", hx_vals={"bonus": 5}, type="submit", hx_swap="none", cls="buttonPlus"),
                     cls="grid-1x5"
                 ),
                 Div(
-                    Button("+6", id="p-six", hx_get="/plus", hx_vals={"bonus": 6}, type="submit", hx_swap="none", style="background: #30422b;"),
-                    Button("+7", id="p-seven", hx_get="/plus", hx_vals={"bonus": 7}, type="submit", hx_swap="none", style="background: #30422b;"),
-                    Button("+8", id="p-eight", hx_get="/plus", hx_vals={"bonus": 8}, type="submit", hx_swap="none", style="background: #30422b;"),
-                    Button("+9", id="p-nine", hx_get="/plus", hx_vals={"bonus": 9}, type="submit", hx_swap="none", style="background: #30422b;"),
-                    Button("+10", id="p-ten", hx_get="/plus", hx_vals={"bonus": 10}, type="submit", hx_swap="none", style="background: #30422b;"),
+                    Button("+6", id="p-six", hx_get="/plus", hx_vals={"bonus": 6}, type="submit", hx_swap="none", cls="buttonPlus"),
+                    Button("+7", id="p-seven", hx_get="/plus", hx_vals={"bonus": 7}, type="submit", hx_swap="none", cls="buttonPlus"),
+                    Button("+8", id="p-eight", hx_get="/plus", hx_vals={"bonus": 8}, type="submit", hx_swap="none", cls="buttonPlus"),
+                    Button("+9", id="p-nine", hx_get="/plus", hx_vals={"bonus": 9}, type="submit", hx_swap="none", cls="buttonPlus"),
+                    Button("+10", id="p-ten", hx_get="/plus", hx_vals={"bonus": 10}, type="submit", hx_swap="none", cls="buttonPlus"),
                     cls="grid-1x5"
                 ),
                 Div(
-                    Button("+11", id="p-1one", hx_get="/plus", hx_vals={"bonus": 11}, type="submit", hx_swap="none", style="background: #30422b;"),
-                    Button("+12", id="p-1two", hx_get="/plus", hx_vals={"bonus": 12}, type="submit", hx_swap="none", style="background: #30422b;"),
-                    Button("+13", id="p-1three", hx_get="/plus", hx_vals={"bonus": 13}, type="submit", hx_swap="none", style="background: #30422b;"),
-                    Button("+14", id="p-1four", hx_get="/plus", hx_vals={"bonus": 14}, type="submit", hx_swap="none", style="background: #30422b;"),
-                    Button("+15", id="p-1five", hx_get="/plus", hx_vals={"bonus": 15}, type="submit", hx_swap="none", style="background: #30422b;"),
+                    Button("+11", id="p-1one", hx_get="/plus", hx_vals={"bonus": 11}, type="submit", hx_swap="none", cls="buttonPlus"),
+                    Button("+12", id="p-1two", hx_get="/plus", hx_vals={"bonus": 12}, type="submit", hx_swap="none", cls="buttonPlus"),
+                    Button("+13", id="p-1three", hx_get="/plus", hx_vals={"bonus": 13}, type="submit", hx_swap="none", cls="buttonPlus"),
+                    Button("+14", id="p-1four", hx_get="/plus", hx_vals={"bonus": 14}, type="submit", hx_swap="none", cls="buttonPlus"),
+                    Button("+15", id="p-1five", hx_get="/plus", hx_vals={"bonus": 15}, type="submit", hx_swap="none", cls="buttonPlus"),
                     cls="grid-1x5"
                 ),
                 Div(
-                    Button("+16", id="p-1six", hx_get="/plus", hx_vals={"bonus": 16}, type="submit", hx_swap="none", style="background: #30422b;"),
-                    Button("+17", id="p-1seven", hx_get="/plus", hx_vals={"bonus": 17}, type="submit", hx_swap="none", style="background: #30422b;"),
-                    Button("+18", id="p-1eight", hx_get="/plus", hx_vals={"bonus": 18}, type="submit", hx_swap="none", style="background: #30422b;"),
-                    Button("+19", id="p-1nine", hx_get="/plus", hx_vals={"bonus": 19}, type="submit", hx_swap="none", style="background: #30422b;"),
-                    Button("+20", id="p-twenty", hx_get="/plus", hx_vals={"bonus": 20}, type="submit", hx_swap="none", style="background: #30422b;"),
+                    Button("+16", id="p-1six", hx_get="/plus", hx_vals={"bonus": 16}, type="submit", hx_swap="none", cls="buttonPlus"),
+                    Button("+17", id="p-1seven", hx_get="/plus", hx_vals={"bonus": 17}, type="submit", hx_swap="none", cls="buttonPlus"),
+                    Button("+18", id="p-1eight", hx_get="/plus", hx_vals={"bonus": 18}, type="submit", hx_swap="none", cls="buttonPlus"),
+                    Button("+19", id="p-1nine", hx_get="/plus", hx_vals={"bonus": 19}, type="submit", hx_swap="none", cls="buttonPlus"),
+                    Button("+20", id="p-twenty", hx_get="/plus", hx_vals={"bonus": 20}, type="submit", hx_swap="none", cls="buttonPlus"),
                     cls="grid-1x5"
                 ),
                 cls="container",
@@ -183,7 +188,15 @@ def plus(bonus:int, session):
         if to_all == 1:
             result_added = result + (multiplier * bonus)
 
-            for die in dice:
+            if die_face == "d20":
+                for die in dice:
+                    if die == 1:
+                        dice_with_bonus.append(1)
+                    elif die == 20:
+                        dice_with_bonus.append(99)
+                    else:
+                        dice_with_bonus.append(die + bonus)
+            else:
                 dice_with_bonus.append(die + bonus)
 
             return Div(
@@ -220,8 +233,6 @@ def d3(session):
         total += die
 
     result = total
-    # dice.sort()
-    # dice.reverse()
 
     session["result"] = result
     session["die_face"] = "d3"
@@ -250,8 +261,6 @@ def d4(session):
         total += die
 
     result = total
-    # dice.sort()
-    # dice.reverse()
 
     session["result"] = result
     session["die_face"] = "d4"
@@ -280,8 +289,6 @@ def d100(session):
         total += die
 
     result = total
-    # dice.sort()
-    # dice.reverse()
 
     session["result"] = result
     session["die_face"] = "d100"
@@ -310,8 +317,6 @@ def d6(session):
         total += die
 
     result = total
-    # dice.sort()
-    # dice.reverse()
 
     session["result"] = result
     session["die_face"] = "d6"
@@ -340,8 +345,6 @@ def d8(session):
         total += die
 
     result = total
-    # dice.sort()
-    # dice.reverse()
 
     session["result"] = result
     session["die_face"] = "d8"
@@ -370,8 +373,6 @@ def d10(session):
         total += die
 
     result = total
-    # dice.sort()
-    # dice.reverse()
 
     session["result"] = result
     session["die_face"] = "d10"
@@ -400,8 +401,6 @@ def d12(session):
         total += die
 
     result = total
-    # dice.sort()
-    # dice.reverse()
 
     session["result"] = result
     session["die_face"] = "d12"
@@ -441,6 +440,37 @@ def d20(session):
         f"{dice}", hx_swap_oob="true", id="dice", style="font-size: 1rem; height: 3rem;"), Div(
                     "",
                     hx_swap_oob="true", id="dice-w-bonus", style="font-size: 1rem; height: 3rem;")
+
+
+@rt("/about")
+def about(session):
+    return Html(
+        Head(
+            Title("Dice Roller"),
+            Meta(name="viewport", content="width=device-width, initial-scale=1"),
+            Script(src="https://unpkg.com/htmx.org"),
+            Link(rel="stylesheet", href="styles.css"),
+            Link(rel="icon", href="images/favicon.ico", type="image/x-icon"),
+            Link(rel="icon", href="images/favicon.png", type="image/png"),
+        ),
+        Body(
+            Div(P("About My App and How it Works"),
+                P("Also TODO: 1. Fix about section ;)"),
+                cls="container"),
+            Div(
+                Button("Return", hx_get="/return", hx_push_url="true", style="width: 120px"),
+                cls="container"
+            )
+        )
+    )
+
+@rt("/to_about")
+def to_about(session):
+    return Redirect("/about")
+
+@rt("/return")
+def to_about(session):
+    return Redirect("/")
 
 
 if __name__ == '__main__':

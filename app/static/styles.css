@@ -68,8 +68,91 @@
     width: max(100px, 8%);
   }
 
+  button:hover {
+    background: #46474b;
+  }
+
+  .buttonD {
+    padding: 0.25rem 0.5rem;
+    border-radius: 0.25rem;
+    border-color: whitesmoke;
+    background: #23303d;
+    color: whitesmoke;
+    border-radius: 2px;
+    cursor: pointer;
+    font-size: clamp(1rem, 1.2vw, 2rem);
+    font-variant-caps: all-petite-caps;
+    width: min(80px, 5%);
+    width: max(100px, 8%);
+  }
+
+  .buttonD:hover {
+    background: #1a232c;
+  }
+
+  .buttonPlus {
+    padding: 0.25rem 0.5rem;
+    border-radius: 0.25rem;
+    border-color: whitesmoke;
+    background: #30422b;
+    color: whitesmoke;
+    border-radius: 2px;
+    cursor: pointer;
+    font-size: clamp(1rem, 1.2vw, 2rem);
+    font-variant-caps: all-petite-caps;
+    width: min(80px, 5%);
+    width: max(100px, 8%);
+  }
+
+  .buttonPlus:hover {
+    background: #293825;
+  }
+
+  .button20 {
+    padding: 0.25rem 0.5rem;
+    border-radius: 0.25rem;
+    border-color: whitesmoke;
+    background: #2a1f3b;
+    color: gold;
+    border-radius: 2px;
+    cursor: pointer;
+    font-size: clamp(1rem, 1.2vw, 2rem);
+    font-variant-caps: all-petite-caps;
+    width: min(80px, 5%);
+    width: max(100px, 8%);
+  }
+
+  .button20:hover {
+    background: #1e162b;
+  }
+
+  .buttonAbout {
+    padding: 5px 0.5rem;
+    color: whitesmoke;
+    border-radius: 5rem;
+    border-color: rgba(245, 245, 245, 0);
+    cursor: pointer;
+    background: rgba(83, 85, 87, 0.25);
+    font-size: clamp(1rem, 1.2vw, 2rem);
+    font-variant-caps: all-petite-caps;
+    width: min(80px, 5%);
+    width: max(100px, 8%);
+  }
+
+  .buttonAbout:hover {
+    background: rgba(70, 71, 75, 1);
+    border-color: rgba(245, 245, 245, 1);
+    border-radius: 5rem;
+  }
+
   .checkbox {
     padding: 0.5rem 1rem;
     border-radius: 0.4rem;
     cursor: pointer;
+  }
+
+  @media (max-width: 400px) {
+    h1 {
+      font-size: clamp(22px, 7vw, 1.7rem);
+    }
   }
