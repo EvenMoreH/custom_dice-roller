@@ -95,7 +95,7 @@ def homepage(session):
                 Div("Dice Result", id="dice", style="font-size: 1rem; height: 3rem; color: rgba(245, 245, 245, 0);"),
                 Div("Dice Result with Bonus", id="dice-w-bonus", style="font-size: 1rem; height: 3rem; color: rgba(245, 245, 245, 0);"),
                 cls="container",
-                style="width: 90%; padding: 0; gap: 0;"
+                style="padding: 0; gap: 0;"
             ),
             # testing bonus damage (example: +5 form strength to each die)
             Div(style="padding: 10px"),
