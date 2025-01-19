@@ -220,8 +220,8 @@ def d3(session):
         total += die
 
     result = total
-    dice.sort()
-    dice.reverse()
+    # dice.sort()
+    # dice.reverse()
 
     session["result"] = result
     session["die_face"] = "d3"
@@ -250,8 +250,8 @@ def d4(session):
         total += die
 
     result = total
-    dice.sort()
-    dice.reverse()
+    # dice.sort()
+    # dice.reverse()
 
     session["result"] = result
     session["die_face"] = "d4"
@@ -280,8 +280,8 @@ def d100(session):
         total += die
 
     result = total
-    dice.sort()
-    dice.reverse()
+    # dice.sort()
+    # dice.reverse()
 
     session["result"] = result
     session["die_face"] = "d100"
@@ -310,8 +310,8 @@ def d6(session):
         total += die
 
     result = total
-    dice.sort()
-    dice.reverse()
+    # dice.sort()
+    # dice.reverse()
 
     session["result"] = result
     session["die_face"] = "d6"
@@ -340,8 +340,8 @@ def d8(session):
         total += die
 
     result = total
-    dice.sort()
-    dice.reverse()
+    # dice.sort()
+    # dice.reverse()
 
     session["result"] = result
     session["die_face"] = "d8"
@@ -370,8 +370,8 @@ def d10(session):
         total += die
 
     result = total
-    dice.sort()
-    dice.reverse()
+    # dice.sort()
+    # dice.reverse()
 
     session["result"] = result
     session["die_face"] = "d10"
@@ -400,8 +400,8 @@ def d12(session):
         total += die
 
     result = total
-    dice.sort()
-    dice.reverse()
+    # dice.sort()
+    # dice.reverse()
 
     session["result"] = result
     session["die_face"] = "d12"
@@ -430,8 +430,8 @@ def d20(session):
         total += die
 
     result = total
-    dice.sort()
-    dice.reverse()
+    # dice.sort()
+    # dice.reverse()
 
     session["result"] = result
     session["die_face"] = "d20"
