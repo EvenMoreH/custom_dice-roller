@@ -185,6 +185,7 @@ def plus(bonus:int, session):
 
         dice_with_bonus = []
 
+
         if to_all == 1:
             result_added = result + (multiplier * bonus)
 
@@ -197,7 +198,8 @@ def plus(bonus:int, session):
                     else:
                         dice_with_bonus.append(die + bonus)
             else:
-                dice_with_bonus.append(die + bonus)
+                for die in dice:
+                    dice_with_bonus.append(die + bonus)
 
             return Div(
                     f"{multiplier}{die_face} + ({multiplier}x{bonus}) [{result_added}]",
