@@ -67,3 +67,11 @@
     width: min(80px, 5%);
     width: max(100px, 8%);
   }
+
+  .checkbox {
+    padding: 0.5rem 1rem;
+    border-radius: 0.4rem;
+    cursor: pointer;
+    /* background: #23303d; */
+    /* background: #30422b; */
+  }
