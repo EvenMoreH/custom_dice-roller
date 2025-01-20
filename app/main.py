@@ -1,7 +1,4 @@
 from fasthtml.common import * # type: ignore
-from fasthtml.common import (
-    Button, Html, Head, Body, Div, Title, Link, Meta, Script, Form, H1,
-)
 import random
 
 # for Docker
@@ -29,7 +26,7 @@ def homepage(session):
             Div(
                 H1("Dice Roller", cls="title", style="padding-left: 4rem;"),
                 Button(
-                    "(i)", hx_get="/to_about", hx_push_url="true", hx_trigger="click",
+                    "(i)", hx_get="/about", hx_trigger="click", hx_target="#about-target", hx_swap="innerHTML",
                     cls="buttonAbout", style="width: 50px; font-variant: none; font-family:Georgia, 'Times New Roman', Times, serif;"),
                 cls="container",
                 style="flex-direction: row;",
@@ -97,6 +94,8 @@ def homepage(session):
                 cls="container",
                 style="padding: 0; gap: 0;"
             ),
+            # about pop up container
+            Div("", id="about-target"),
             # testing bonus damage (example: +5 form strength to each die)
             Div(style="padding: 10px"),
             Div(
@@ -443,36 +442,59 @@ def d20(session):
                     "",
                     hx_swap_oob="true", id="dice-w-bonus", style="font-size: 1rem; height: 3rem;")
 
-
 @rt("/about")
 def about(session):
-    return Html(
-        Head(
-            Title("Dice Roller"),
-            Meta(name="viewport", content="width=device-width, initial-scale=1"),
-            Script(src="https://unpkg.com/htmx.org"),
-            Link(rel="stylesheet", href="styles.css"),
-            Link(rel="icon", href="images/favicon.ico", type="image/x-icon"),
-            Link(rel="icon", href="images/favicon.png", type="image/png"),
-        ),
-        Body(
-            Div(P("About My App and How it Works"),
-                P("Also TODO: 1. Fix about section ;)"),
-                cls="container"),
-            Div(
-                Button("Return", hx_get="/return", hx_push_url="true", style="width: 120px"),
-                cls="container"
-            )
-        )
-    )
+    d20_text = """
+                    When rolling d20 - a die famously used to roll for hit: (a)critical success,
+                    if bonus was applied - each success is converted to 99,
+                    (b)critical failure - always stay as 1 - indicating miss.
+                """
 
-@rt("/to_about")
-def to_about(session):
-    return Redirect("/about")
+    return Div(
+                Div(
+                    H2("About Dice Roller",
+                    cls="about-text", style="font-size: 26px"),
+                    P("", cls="about-text", style="padding: 0.5rem"),
+                    P("App I have prototyped in a day, to use it during upcoming TTRPG session.",
+                    cls="about-text"),
+                    P("After that, further polished for couple of hours to ensure it can be used by other players.",
+                    cls="about-text"),
+                    P("", cls="about-text", style="padding: 0.5rem"),
+                    P("The idea behind it is really simple:",
+                    cls="about-text"),
+                    P("1. Select a multiplier (x1 to x20)",
+                    cls="about-text", style="padding-left: 1rem"),
+                    P("2. Select a die that will be rolled number of times selected in multiplier",
+                    cls="about-text", style="padding-left: 1rem"),
+                    P("3. Add a bonus using +1 to +20:",
+                    cls="about-text", style="padding-left: 1rem"),
+                    P("a) one time by pressing the button",
+                    cls="about-text", style="padding-left: 2rem"),
+                    P("b) to each rolled dice by checking \"Add Bonus to Each Die?\" and pressing a button afterwards",
+                    cls="about-text", style="padding-left: 2rem"),
+                    P("", cls="about-text", style="padding: 0.5rem"),
+                    P("Multiplier can be omitted and die will be rolled only once.",
+                    cls="about-text"),
+                    P("", cls="about-text", style="padding: 0.5rem"),
+                    P(d20_text, cls="about-text"),
+                    P("", cls="about-text", style="padding: 0.5rem"),
+                    P("Conversions have no impact on calculated sum.", cls="about-text"),
+                    style="line-height: 1.2;"
+                ),
+                Div(
+                    Div(style="padding: 10px; background-color: rgb(50, 50, 50);"),
+                    Button(
+                        "Close", hx_get="close-about", hx_target="#about-target", hx_swap="innerHTML",
+                        style="max-width: 75px; font-size: 1rem;"),
+                    cls="popup-button",
+                    style="background-color: rgb(50, 50, 50);"
+                ),
+                cls="popup"
+            ),
 
-@rt("/return")
-def to_about(session):
-    return Redirect("/")
+@rt("/close-about")
+def close_about(session):
+    return Div("")
 
 
 if __name__ == '__main__':
