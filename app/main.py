@@ -191,9 +191,9 @@ def plus(bonus:int, session):
             if die_face == "d20":
                 for die in dice:
                     if die == 1:
-                        dice_with_bonus.append(1)
+                        dice_with_bonus.append("1!")
                     elif die == 20:
-                        dice_with_bonus.append(99)
+                        dice_with_bonus.append("20!")
                     else:
                         dice_with_bonus.append(die + bonus)
             else:
@@ -445,9 +445,9 @@ def d20(session):
 @rt("/about")
 def about(session):
     d20_text = """
-                    When rolling d20 - a die famously used to roll for hit: (a)critical success,
-                    if bonus was applied - each success is converted to 99,
-                    (b)critical failure - always stay as 1 - indicating miss.
+                    When rolling d20 - a die famously used to roll for hit:
+                    (a)critical success, if bonus was applied - each success is converted to "20!",
+                    (b)critical failure - show as "1!" - indicating miss.
                 """
 
     return Div(
