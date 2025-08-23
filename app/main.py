@@ -18,7 +18,6 @@ def homepage(session):
             Title("Dice Roller"),
             Meta(name="viewport", content="width=device-width, initial-scale=1"),
             Script(src="https://unpkg.com/htmx.org"),
-            Link(rel="stylesheet", href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap"),
             Link(rel="stylesheet", href="styles.css"),
             Link(rel="icon", href="images/favicon.ico", type="image/x-icon"),
             Link(rel="icon", href="images/favicon.png", type="image/png"),
